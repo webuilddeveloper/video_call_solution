@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:video_call/appointment-details.dart';
 import 'package:video_call/component/appbar.dart';
+import 'package:video_call/consultation-schedule.dart';
+import 'package:video_call/login.dart';
 import 'package:video_call/menu.dart';
 import 'package:video_call/post-list.dart';
 
@@ -11,6 +15,8 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  final storage = FlutterSecureStorage();
+
   @override
   void initState() {
     // canPop = false;
@@ -118,6 +124,14 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
               const SizedBox(height: 10),
+              menuItem(title: 'ตารางวันปรึกษา', onTap: () => {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ConsultationSchedule(),
+                    ),
+                  ),
+              }),
               menuItem(title: 'การถูกใจ', onTap: () => {}),
               menuItem(title: 'ประวัตินัดหมาย', onTap: () => {}),
               menuItem(
@@ -148,7 +162,9 @@ class _ProfilePageState extends State<ProfilePage> {
               menuItem(title: 'เกี่ยวกับเรา', onTap: () => {}),
               const SizedBox(height: 20),
               GestureDetector(
-                onTap: () => {},
+                onTap: () => {
+                  logout()
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -260,5 +276,15 @@ class _ProfilePageState extends State<ProfilePage> {
 
   void goBack() async {
     Navigator.pop(context, false);
+  }
+
+  logout() async {
+    storage.deleteAll();
+    await Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(
+        builder: (context) => const LoginPage(),
+      ),
+      (Route<dynamic> route) => false,
+    );
   }
 }

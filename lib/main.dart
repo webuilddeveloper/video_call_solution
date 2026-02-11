@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hms_room_kit/hms_room_kit.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:video_call/home.dart';
 import 'package:video_call/menu.dart';
+import 'package:video_call/splash.dart';
 
-void main() {
+void main() async{
+  await initializeDateFormatting('th', null);
   runApp(const MyApp());
 }
 
@@ -38,7 +41,7 @@ class MyApp extends StatelessWidget {
         textTheme: GoogleFonts.promptTextTheme(),
         fontFamily: GoogleFonts.prompt().fontFamily,
       ),
-      home: const MenuPage(),
+      home: const SplashPage(),
     );
   }
 }

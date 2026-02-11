@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:video_call/appointment-details.dart';
 import 'package:video_call/component/appbar.dart';
 import 'package:video_call/lawyer-online-details.dart';
 import 'package:video_call/lawyer-online-list.dart';
@@ -93,6 +95,36 @@ class _HomePageState extends State<HomePage> {
 
   String? selectedCategory = "0";
 
+  List<dynamic> appointmentList = [
+    {
+      "code": "0",
+      "clientName": "อนงค์ ดำเนิน",
+      "caseType": "คดีมรดกทุกประเภท",
+      "subCaseType": "ฟ้องร้องมรดก",
+      "appointmentDate": "28/03/2026",
+      "appointmentTime": "11.00 - 14.00",
+      "title": "ขอฟ้องร้องมรดกพี่น้อง",
+      "details":
+          "ต้องการฟ้องร้องพี่น้องที่โกงเงินมรดกอย่าตั้งใจเป็นเวลานานไม่แบ่งใครเป็นมรดกของคุณพ่อแต่คุณแม่ยังมีชีวิตอยู่",
+      "paymentStatus": "1"
+    },
+    {
+      "code": "1",
+      "clientName": "อนงค์ ดำเนิน",
+      "caseType": "คดีมรดกทุกประเภท",
+      "subCaseType": "ฟ้องร้องมรดก",
+      "appointmentDate": "28/03/2026",
+      "appointmentTime": "11.00 - 14.00",
+      "title": "ขอฟ้องร้องมรดกพี่น้อง",
+      "details":
+          "ต้องการฟ้องร้องพี่น้องที่โกงเงินมรดกอย่าตั้งใจเป็นเวลานานไม่แบ่งใครเป็นมรดกของคุณพ่อแต่คุณแม่ยังมีชีวิตอยู่",
+      "paymentStatus": "1"
+    },
+  ];
+
+  final storage = FlutterSecureStorage();
+  String userType = "";
+
   @override
   void initState() {
     // canPop = false;
@@ -100,8 +132,11 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
-  callRead() {
-    postDio('${mainBannerApi}read', {'skip': 0, 'limit': 10}).then(
+  callRead() async {
+    setState(() {
+      userType = storage.read(key: 'userType').toString();
+    });
+    await postDio('${mainBannerApi}read', {'skip': 0, 'limit': 10}).then(
       (value) async => {
         setState(
           () {
@@ -275,6 +310,22 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 15,
             ),
+            userType == 'lawyer' ? Column(
+              children: [
+                title(
+                    title: "นัดหมายที่กำลังจะมาถึง",
+                    isRightBtn: true,
+                    titleRightBtn: "ดูทั้งหมด",
+                    viewAll: () => {}),
+                const SizedBox(
+                  height: 15,
+                ),
+                _buildAppointmentList(),
+                const SizedBox(
+                  height: 15,
+                ),
+              ],
+            ) : Container(),
             title(
               title: "หมอความออนไลน์",
               isRightBtn: true,
@@ -893,6 +944,126 @@ class _HomePageState extends State<HomePage> {
                 )
               : Container()
         ],
+      ),
+    );
+  }
+
+  _buildAppointmentList() {
+    return SizedBox(
+      height: 86,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        padding: EdgeInsets.fromLTRB(15, 0, 15, 10),
+        itemCount: appointmentList.length,
+        itemBuilder: (context, index) => Align(
+          alignment: Alignment.topCenter,
+          child: _appointmentItem(
+            appointmentList[index],
+            onTap: () => {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AppointmentDetails(
+                    model: appointmentList[index],
+                  ),
+                ),
+              ),
+            },
+          ),
+        ),
+        separatorBuilder: (BuildContext context, int index) => const SizedBox(
+          width: 15,
+        ),
+      ),
+    );
+  }
+
+  _appointmentItem(Map model, {Function? onTap}) {
+    return GestureDetector(
+      onTap: () => onTap!(),
+      child: Container(
+        width: MediaQuery.of(context).size.width - 30,
+        // height: 200,
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        decoration: BoxDecoration(
+          color: Color(0xFFBAD5FF),
+          borderRadius: BorderRadius.circular(10),
+          // boxShadow: [
+          //   BoxShadow(
+          //     color: Colors.black.withOpacity(0.15),
+          //     blurRadius: 15,
+          //     offset: const Offset(0, 4),
+          //   ),
+          // ],
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 58,
+              height: 56,
+              padding: EdgeInsets.all(11),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: const Color(0xFF0262EC)),
+              child: Image.asset(
+                'assets/icons/calendar-appointment.png',
+                height: 34,
+                width: 36,
+                fit: BoxFit.contain,
+                color: Colors.white,
+              ),
+            ),
+            const SizedBox(width: 30),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  model['title'] ?? '',
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w700),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Row(
+                  children: [
+                    Image.asset(
+                      'assets/icons/calendar-appointment.png',
+                      height: 13,
+                      width: 13,
+                      fit: BoxFit.contain,
+                      color: Colors.black,
+                    ),
+                    const SizedBox(width: 5),
+                    Text(
+                      model['appointmentDate'] ?? '',
+                      style: const TextStyle(fontSize: 10),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Image.asset(
+                      'assets/icons/time-appointment.png',
+                      height: 13,
+                      width: 13,
+                      fit: BoxFit.contain,
+                      color: Colors.black,
+                    ),
+                    const SizedBox(width: 5),
+                    Text(
+                      model['appointmentTime'] ?? '',
+                      style: const TextStyle(fontSize: 10),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

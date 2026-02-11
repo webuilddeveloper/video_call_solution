@@ -13,11 +13,46 @@ class MessageFormPage extends StatefulWidget {
 
 class _MessageFormPageState extends State<MessageFormPage> {
   final TextEditingController chatController = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
+
+  final List<ChatMessage> messages = [];
 
   @override
   void dispose() {
     chatController.dispose();
     super.dispose();
+  }
+
+  void _sendMessage() {
+    final text = chatController.text.trim();
+    if (text.isEmpty) return;
+
+    setState(() {
+      messages.add(ChatMessage(
+        text: text,
+        isMe: true,
+      ));
+    });
+
+    chatController.clear();
+
+    // scroll ลงล่าง
+    Future.delayed(const Duration(milliseconds: 100), () {
+      _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+      );
+    });
+
+    Future.delayed(const Duration(seconds: 1), () {
+      setState(() {
+        messages.add(ChatMessage(
+          text: 'รับทราบครับ 👍',
+          isMe: false,
+        ));
+      });
+    });
   }
 
   @override
@@ -93,7 +128,76 @@ class _MessageFormPageState extends State<MessageFormPage> {
             const SizedBox(
               height: 20,
             ),
-            Text(chatController.text)
+            Expanded(
+              child: ListView.builder(
+                controller: _scrollController,
+                padding: const EdgeInsets.all(12),
+                itemCount: messages.length,
+                itemBuilder: (context, index) {
+                  final msg = messages[index];
+                  return Align(
+                    alignment:
+                        msg.isMe ? Alignment.centerRight : Alignment.centerLeft,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        !msg.isMe
+                            ? ClipRRect(
+                                borderRadius: BorderRadius.circular(100),
+                                child: Image.asset(
+                                  widget.model['imageUrl'] ?? '',
+                                  height: 40,
+                                  width: 40,
+                                  fit: BoxFit.cover,
+                                ),
+                              )
+                            : Container(),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Container(
+                          // margin: const EdgeInsets.symmetric(vertical: 4),
+                          // padding: const EdgeInsets.all(12),
+                          // decoration: BoxDecoration(
+                          //   color: msg.isMe
+                          //       ? Colors.blueAccent
+                          //       : Colors.grey.shade300,
+                          //   borderRadius: BorderRadius.circular(16),
+                          // ),
+                          margin: const EdgeInsets.symmetric(vertical: 4),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 14, vertical: 10),
+                          constraints: BoxConstraints(
+                            maxWidth: MediaQuery.of(context).size.width * 0.7,
+                          ),
+                          decoration: BoxDecoration(
+                            color: msg.isMe
+                                ? const Color(0xFF00B900)
+                                : Colors.grey.shade300,
+                            borderRadius: BorderRadius.only(
+                              topLeft: const Radius.circular(18),
+                              topRight: const Radius.circular(18),
+                              bottomLeft: msg.isMe
+                                  ? const Radius.circular(18)
+                                  : const Radius.circular(4),
+                              bottomRight: msg.isMe
+                                  ? const Radius.circular(4)
+                                  : const Radius.circular(18),
+                            ),
+                          ),
+                          child: Text(
+                            msg.text,
+                            style: TextStyle(
+                              color: msg.isMe ? Colors.white : Colors.black,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),
@@ -106,11 +210,12 @@ class _MessageFormPageState extends State<MessageFormPage> {
               left: 15, right: 15, bottom: isKeyboardOpen(context) ? 15 : 25),
           child: TextField(
             controller: chatController,
-            maxLines: null,   
+            maxLines: null,
             keyboardType: TextInputType.multiline,
             onChanged: (value) {
               setState(() {});
             },
+            onSubmitted: (value) => _sendMessage(),
             style: const TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.normal,
@@ -127,10 +232,13 @@ class _MessageFormPageState extends State<MessageFormPage> {
               suffixIcon: Padding(
                 padding: const EdgeInsets.fromLTRB(8, 13, 15, 13),
                 child: chatController.text.isNotEmpty
-                    ? const Icon(
-                        Icons.send,
-                        size: 26,
-                        color: Color(0xFF0262EC),
+                    ? GestureDetector(
+                        onTap: () => _sendMessage(),
+                        child: const Icon(
+                          Icons.send,
+                          size: 26,
+                          color: Color(0xFF0262EC),
+                        ),
                       )
                     : Row(
                         mainAxisSize: MainAxisSize.min,
@@ -179,4 +287,14 @@ class _MessageFormPageState extends State<MessageFormPage> {
   void goBack() async {
     Navigator.pop(context, false);
   }
+}
+
+class ChatMessage {
+  final String text;
+  final bool isMe;
+
+  ChatMessage({
+    required this.text,
+    required this.isMe,
+  });
 }
