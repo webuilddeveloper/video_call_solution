@@ -33,7 +33,6 @@ class _MenuPageState extends State<MenuPage> {
 
   @override
   void initState() {
-    print(widget.userType);
     callRead();
     super.initState();
     // _loadUserProfile();
