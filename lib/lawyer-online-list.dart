@@ -102,8 +102,9 @@ class _LawyerOnlineListState extends State<LawyerOnlineList> {
       backgroundColor: const Color(0xFFEEF2F5),
       appBar: appBar(
         title: "หมอความออนไลน์",
-        backBtn: false,
+        backBtn: true,
         rightBtn: true,
+        backAction: () => goBack(),
         rightAction: () => {},
       ),
       body: Container(

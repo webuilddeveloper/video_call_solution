@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:video_call/calendar.dart';
 import 'package:video_call/component/check_avatar.dart';
@@ -26,24 +27,34 @@ class _MenuPageState extends State<MenuPage> {
   DateTime? currentBackPressTime;
 
   final TextEditingController chatController = TextEditingController();
+  final storage = FlutterSecureStorage();
+  String userType = "";
 
   @override
   void initState() {
+    callRead();
     super.initState();
     // _loadUserProfile();
-    pages = <Widget>[
-      HomePage(),
-      MessagePage(),
-      LawyerOnlineList(),
-      CalendarPage(),
-      ProfilePage(),
-    ];
-    // MyAppointment(),
+  }
+
+  callRead() async {
+    var user = await storage.read(key: 'userType');
     setState(() {
+      userType = user.toString();
+    });
+    setState(() {
+      pages = <Widget>[
+        HomePage(),
+        MessagePage(),
+        LawyerOnlineList(),
+        userType == "user" ? MyAppointment() : CalendarPage(),
+        ProfilePage(),
+      ];
+      // MyAppointment(),
+
       _currentPage = widget.pageIndex ?? 0;
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -85,15 +96,16 @@ class _MenuPageState extends State<MenuPage> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Expanded(
-                child: _bottomItem("assets/icons/home.png", 0, title: 'หนัาหลัก'),
+                child:
+                    _bottomItem("assets/icons/home.png", 0, title: 'หนัาหลัก'),
               ),
               Expanded(
                 child: _bottomItem("assets/icons/message.png", 1,
                     title: 'ข้อความ'),
               ),
               Expanded(
-                child: _bottomItem("assets/icons/consult.png", 2,
-                    title: 'ปรึกษา'),
+                child:
+                    _bottomItem("assets/icons/consult.png", 2, title: 'ปรึกษา'),
               ),
               Expanded(
                 child: _bottomItem("assets/icons/appointment.png", 3,
@@ -225,5 +237,4 @@ class _MenuPageState extends State<MenuPage> {
       ),
     );
   }
-
 }

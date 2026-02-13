@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:video_call/add-appointment.dart';
 import 'package:video_call/component/appbar.dart';
 import 'package:video_call/lawyer-online-details.dart';
 import 'package:video_call/menu.dart';
@@ -61,12 +62,40 @@ class _MyAppointmentState extends State<MyAppointment> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFEEF2F5),
-      appBar: appBar(
-        title: "นัดหมายของฉัน",
-        backBtn: false,
-        rightBtn: false,
-        rightAction: () => {},
-      ),
+      appBar: appBarCustom(
+          title: "นัดหมายของฉัน",
+          backBtn: false,
+          isRightWidget: true,
+          rightWidget: GestureDetector(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AppAppointment(),
+              ),
+            ),
+            child: Container(
+              width: 40,
+              alignment: Alignment.center,
+              // padding: const EdgeInsets.symmetric(
+              //   horizontal: 12,
+              //   vertical: 10,
+              // ),
+              decoration: BoxDecoration(
+                color: const Color(0xFFFAFAFA),
+                // borderRadius: BorderRadius.circular(22),
+                shape: BoxShape.circle,
+                border: Border.all(
+                  width: 1,
+                  color: const Color(0xFFDBDBDB),
+                ),
+              ),
+              child: SizedBox(
+                width: 20,
+                height: 18,
+                child: Image.asset("assets/icons/app-appointment.png"),
+              ),
+            ),
+          )),
       body: Container(
         child: Column(
           children: [
@@ -204,11 +233,10 @@ class _MyAppointmentState extends State<MyAppointment> {
                     Text(
                       model['createDate'],
                       style: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xFF3C5065),
-                        height: 1.2
-                      ),
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xFF3C5065),
+                          height: 1.2),
                     ),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -217,9 +245,12 @@ class _MyAppointmentState extends State<MyAppointment> {
                           width: 9,
                           height: 9,
                           decoration: BoxDecoration(
-                            color: model['status'] == '0' ? const Color(0xFFFFB909) : model['status'] == '1' ? const Color(0xFF34C759) : Colors.red,
-                            shape: BoxShape.circle
-                          ),
+                              color: model['status'] == '0'
+                                  ? const Color(0xFFFFB909)
+                                  : model['status'] == '1'
+                                      ? const Color(0xFF34C759)
+                                      : Colors.red,
+                              shape: BoxShape.circle),
                         ),
                         const SizedBox(width: 5),
                         Text(

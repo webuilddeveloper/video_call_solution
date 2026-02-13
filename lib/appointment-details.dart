@@ -39,21 +39,23 @@ class _AppointmentDetailsState extends State<AppointmentDetails> {
                 child: GestureDetector(
                   onTap: () => {
                     // successDialog()
-                    AwesomeDialog(
-                      context: context,
-                      dialogType: DialogType.success,
-                      animType: AnimType.scale,
-                      customHeader: const Icon(
-                        Icons.check_circle,
-                        color: Colors.green,
-                        size: 110,
-                      ),
-                      title: 'สำเร็จ',
-                      desc: 'บันทึกข้อมูลเรียบร้อยแล้ว',
-                      btnOkOnPress: () {
-                        goBack();
-                      },
-                    ).show()
+                    // AwesomeDialog(
+                    //   context: context,
+                    //   dialogType: DialogType.success,
+                    //   animType: AnimType.scale,
+                    //   customHeader: const Icon(
+                    //     Icons.check_circle,
+                    //     color: Colors.green,
+                    //     size: 110,
+                    //   ),
+                    //   title: 'สำเร็จ',
+                    //   desc: 'บันทึกข้อมูลเรียบร้อยแล้ว',
+                    //   btnOkOnPress: () {
+                    //     goBack();
+                    //   },
+                    // ).show()
+
+                    dialogSuccess()
                   },
                   child: Container(
                     padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
@@ -72,26 +74,28 @@ class _AppointmentDetailsState extends State<AppointmentDetails> {
                   ),
                 ),
               ),
-              const SizedBox(width: 20,),
+              const SizedBox(
+                width: 20,
+              ),
               Expanded(
                 child: GestureDetector(
                   onTap: () => {
-                    // successDialog()
-                    AwesomeDialog(
-                      context: context,
-                      dialogType: DialogType.success,
-                      animType: AnimType.scale,
-                      customHeader: const Icon(
-                        Icons.check_circle,
-                        color: Colors.green,
-                        size: 110,
-                      ),
-                      title: 'สำเร็จ',
-                      desc: 'บันทึกข้อมูลเรียบร้อยแล้ว',
-                      btnOkOnPress: () {
-                        goBack();
-                      },
-                    ).show()
+                    dialogSuccess()
+                    // AwesomeDialog(
+                    //   context: context,
+                    //   dialogType: DialogType.success,
+                    //   animType: AnimType.scale,
+                    //   customHeader: const Icon(
+                    //     Icons.check_circle,
+                    //     color: Colors.green,
+                    //     size: 110,
+                    //   ),
+                    //   title: 'สำเร็จ',
+                    //   desc: 'บันทึกข้อมูลเรียบร้อยแล้ว',
+                    //   btnOkOnPress: () {
+                    //     goBack();
+                    //   },
+                    // ).show()
                   },
                   child: Container(
                     padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
@@ -218,6 +222,83 @@ class _AppointmentDetailsState extends State<AppointmentDetails> {
           ),
         )
       ],
+    );
+  }
+
+  dialogSuccess() {
+    return showDialog(
+      barrierDismissible: false,
+      barrierColor: Color.fromARGB(255, 2, 71, 168).withOpacity(0.5),
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          // backgroundColor: Color(0xFF0262EC).withOpacity(0.5),
+          // shadowColor: Colors.black.withOpacity(0.08),
+          elevation: 8,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Container(
+            width: double.infinity,
+            padding: EdgeInsets.all(30),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  width: 71,
+                  height: 71,
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      width: 4,
+                      color: const Color(0xFF0262EC),
+                    ),
+                  ),
+                  child: const Icon(
+                    Icons.check,
+                    color: Color(0xFF0262EC),
+                    size: 40,
+                  ),
+                ),
+                SizedBox(height: 20),
+                const Text(
+                  'ทำการนัดหมายสำเร็จ',
+                  style: TextStyle(
+                      color: Color(0xFF0262EC),
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700),
+                ),
+                SizedBox(height: 20),
+                GestureDetector(
+                  onTap: () => {
+                    goBack(),
+                    goBack(),
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 15, horizontal: 60),
+                    decoration: BoxDecoration(
+                        color: const Color(0xFF0262EC),
+                        borderRadius: BorderRadius.circular(18),
+                        border: Border.all(
+                            width: 1, color: const Color(0xFFDBDBDB))),
+                    child: const Text(
+                      "ตกลง",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 

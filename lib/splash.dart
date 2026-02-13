@@ -16,66 +16,47 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  late Future<dynamic> futureModel;
 
   @override
   void initState() {
-    // _callRead();
     super.initState();
+    _startDelay();
+  }
+
+  void _startDelay() async {
+    await Future.delayed(const Duration(seconds: 2));
+    _callNavigatorPage();
   }
 
   @override
   Widget build(BuildContext context) {
-    return _buildSplash();
-  }
-
-  _buildSplash() {
-    // ignore: deprecated_member_use
     return WillPopScope(
-      onWillPop: () {
-        return Future.value(false);
-      },
+      onWillPop: () async => false,
       child: Scaffold(
         backgroundColor: Colors.white,
-        body: Container(
-          color: Colors.white,
-          child: _callTimer(2),
-        )
-        
-        
+        body: Center(
+          child: SizedBox()
+        ),
       ),
     );
   }
 
-  _callRead() {
-    futureModel = postDio('${server}m/splash/read', {});
-  }
-
-  _callTimer(time) async {
-    var duration = Duration(seconds: time);
-    return Timer(duration, _callNavigatorPage);
-  }
-
-  _callNavigatorPage() async {
+  Future<void> _callNavigatorPage() async {
     const storage = FlutterSecureStorage();
     String? value = await storage.read(key: 'userType');
 
-    if (value != null && value != '') {
+    if (!mounted) return;
+
+    if (value != null && value.isNotEmpty) {
       Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(
-          builder: (context) => MenuPage(),
-        ),
-        (Route<dynamic> route) => false,
+        MaterialPageRoute(builder: (_) => MenuPage()),
+        (_) => false,
       );
     } else {
-      // ignore: use_build_context_synchronously
       Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(
-          builder: (context) => const LoginPage(),
-        ),
-        (Route<dynamic> route) => false,
+        MaterialPageRoute(builder: (_) => const LoginPage()),
+        (_) => false,
       );
     }
-
   }
 }

@@ -133,15 +133,15 @@ class _HomePageState extends State<HomePage> {
   }
 
   callRead() async {
+    var user = await storage.read(key: 'userType');
     setState(() {
-      userType = storage.read(key: 'userType').toString();
+      userType = user.toString();
     });
     await postDio('${mainBannerApi}read', {'skip': 0, 'limit': 10}).then(
       (value) async => {
         setState(
           () {
             mockBannerList = value;
-            print(mockBannerList);
           },
         )
       },
