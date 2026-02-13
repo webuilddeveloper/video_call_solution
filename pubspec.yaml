@@ -1,5 +1,5 @@
-name: video_call
-description: "A new Flutter project."
+name: LawyerOnline
+description: "หมอความออนไลน์"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -20,6 +20,14 @@ version: 1.0.0+1
 
 environment:
   sdk: ^3.5.3
+
+
+flutter_launcher_icons:
+  android: true  # เปลี่ยนเป็น true หรือชื่อแพ็คเกจ
+  ios: true
+  image_path: "assets/icons/logo.png"  # ตรงกับเส้นทางที่คุณระบุ
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "assets/icons/logo.png"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -50,7 +58,7 @@ dependencies:
   http_parser: ^4.0.2
   flutter_html: ^3.0.0-beta.2
   pull_to_refresh: ^2.0.0
-
+  flutter_launcher_icons: ^0.14.3
 
 dev_dependencies:
   flutter_test:
