@@ -158,7 +158,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: const Color(0xFFEEF2F5),
         appBar: appBarHome(
           name: 'ออกแบบ ทดลอง',
-          memberType: 'บุคคลทั่วไป',
+          memberType: userType == 'user' ? 'บุคคลทั่วไป' : 'หมอความ',
           imageUrl: 'assets/images/avatar.png',
           rightWidget: Row(
             children: [

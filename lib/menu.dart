@@ -10,11 +10,12 @@ import 'package:video_call/my-appointment.dart';
 import 'package:video_call/profile.dart';
 
 class MenuPage extends StatefulWidget {
-  const MenuPage({Key? key, this.pageIndex, this.modelprofile})
+  MenuPage({Key? key, this.pageIndex, this.modelprofile, this.userType})
       : super(key: key);
 
   final int? pageIndex;
   final modelprofile;
+  final String? userType;
 
   @override
   State<MenuPage> createState() => _MenuPageState();
@@ -32,6 +33,7 @@ class _MenuPageState extends State<MenuPage> {
 
   @override
   void initState() {
+    userType = widget.userType!;
     callRead();
     super.initState();
     // _loadUserProfile();
@@ -41,8 +43,6 @@ class _MenuPageState extends State<MenuPage> {
     var user = await storage.read(key: 'userType');
     setState(() {
       userType = user.toString();
-    });
-    setState(() {
       pages = <Widget>[
         HomePage(),
         MessagePage(),
@@ -50,8 +50,6 @@ class _MenuPageState extends State<MenuPage> {
         userType == "user" ? MyAppointment() : CalendarPage(),
         ProfilePage(),
       ];
-      // MyAppointment(),
-
       _currentPage = widget.pageIndex ?? 0;
     });
   }

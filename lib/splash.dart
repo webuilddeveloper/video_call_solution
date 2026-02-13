@@ -43,13 +43,13 @@ class _SplashPageState extends State<SplashPage> {
 
   Future<void> _callNavigatorPage() async {
     const storage = FlutterSecureStorage();
-    String? value = await storage.read(key: 'userType');
+    var user = await storage.read(key: 'userType');
 
     if (!mounted) return;
 
-    if (value != null && value.isNotEmpty) {
+    if (user != null && user.isNotEmpty) {
       Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (_) => MenuPage()),
+        MaterialPageRoute(builder: (_) => MenuPage(userType: user,)),
         (_) => false,
       );
     } else {

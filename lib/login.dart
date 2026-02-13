@@ -47,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
                   /// Logo + Title
 
                   const Text(
-                    'Get Started now',
+                    'หมอความออนไลน์',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 28,
@@ -219,7 +219,7 @@ class _LoginPageState extends State<LoginPage> {
             key: 'userType', value: usernameController.text.toLowerCase());
         await Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
-            builder: (context) => MenuPage(),
+            builder: (context) => MenuPage(userType: 'lawyer',),
           ),
           (Route<dynamic> route) => false,
         );
@@ -229,7 +229,7 @@ class _LoginPageState extends State<LoginPage> {
             key: 'userType', value: usernameController.text.toLowerCase());
         await Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
-            builder: (context) => MenuPage(),
+            builder: (context) => MenuPage(userType: 'user',),
           ),
           (Route<dynamic> route) => false,
         );
