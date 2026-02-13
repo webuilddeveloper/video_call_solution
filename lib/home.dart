@@ -566,28 +566,31 @@ class _HomePageState extends State<HomePage> {
                       Positioned(
                         top: 0,
                         right: 0,
-                        child: Container(
-                          // width: 50,
-                          // height: 50,
-                          padding: const EdgeInsets.all(10),
-                          // decoration: BoxDecoration(
-                          //   color: const Color(0xFFFAFAFA),
-                          //   // borderRadius: BorderRadius.circular(18),
-                          //   shape: BoxShape.circle,
-                          //   border: Border.all(
-                          //     width: 1,
-                          //     color: const Color(0xFFDBDBDB),
-                          //   ),
-                          // ),
-                          child: const Text(
-                            "โพสต์",
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Color(0xFF0262EC),
-                                fontWeight: FontWeight.w600),
-                            textAlign: TextAlign.center,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
+                        child: GestureDetector(
+                          onTap: () => goBack(),
+                          child: Container(
+                            // width: 50,
+                            // height: 50,
+                            padding: const EdgeInsets.all(10),
+                            // decoration: BoxDecoration(
+                            //   color: const Color(0xFFFAFAFA),
+                            //   // borderRadius: BorderRadius.circular(18),
+                            //   shape: BoxShape.circle,
+                            //   border: Border.all(
+                            //     width: 1,
+                            //     color: const Color(0xFFDBDBDB),
+                            //   ),
+                            // ),
+                            child: const Text(
+                              "โพสต์",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Color(0xFF0262EC),
+                                  fontWeight: FontWeight.w600),
+                              textAlign: TextAlign.center,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
                         ),
                       ),
