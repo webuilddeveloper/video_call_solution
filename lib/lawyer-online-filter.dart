@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:video_call/component/appbar.dart';
-import 'package:video_call/lawyer-online-details.dart';
-import 'package:video_call/menu.dart';
+import 'package:LawyerOnline/component/appbar.dart';
 
 class LawyerOnlineFilter extends StatefulWidget {
   const LawyerOnlineFilter({super.key});

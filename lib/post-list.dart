@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:video_call/component/appbar.dart';
-import 'package:video_call/lawyer-online-details.dart';
-import 'package:video_call/menu.dart';
-import 'package:video_call/post-details.dart';
+import 'package:LawyerOnline/component/appbar.dart';
+import 'package:LawyerOnline/post-details.dart';
 
 class PostList extends StatefulWidget {
   const PostList({super.key});

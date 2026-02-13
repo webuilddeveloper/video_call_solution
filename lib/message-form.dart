@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:video_call/component/appbar.dart';
+import 'package:LawyerOnline/component/appbar.dart';
 
 class MessageFormPage extends StatefulWidget {
   MessageFormPage({Key? key, this.model});

@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:video_call/login.dart';
-import 'package:video_call/menu.dart';
+import 'package:LawyerOnline/login.dart';
+import 'package:LawyerOnline/menu.dart';
 // import 'package:lc/menu_v2.dart';
 // import 'package:lc/menu.dart';
 import 'shared/api_provider.dart';
@@ -35,7 +35,12 @@ class _SplashPageState extends State<SplashPage> {
       child: Scaffold(
         backgroundColor: Colors.white,
         body: Center(
-          child: SizedBox()
+          child: Image.asset(
+            "assets/icons/logo.png",
+            width: 150,
+            height: 150,
+            fit: BoxFit.contain,
+          )
         ),
       ),
     );

@@ -1,8 +1,7 @@
+import 'package:LawyerOnline/component/appbar.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:video_call/component/appbar.dart';
-import 'package:video_call/menu.dart';
 
 class LawyerOnlineDetails extends StatefulWidget {
   LawyerOnlineDetails({Key? key, this.code});

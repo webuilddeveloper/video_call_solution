@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:video_call/add-appointment.dart';
-import 'package:video_call/component/appbar.dart';
-import 'package:video_call/lawyer-online-details.dart';
-import 'package:video_call/menu.dart';
+import 'package:LawyerOnline/add-appointment.dart';
+import 'package:LawyerOnline/component/appbar.dart';
+import 'package:LawyerOnline/lawyer-online-details.dart';
+import 'package:LawyerOnline/menu.dart';
 
 class MyAppointment extends StatefulWidget {
   const MyAppointment({super.key});

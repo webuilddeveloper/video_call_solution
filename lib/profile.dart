@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:video_call/appointment-details.dart';
-import 'package:video_call/component/appbar.dart';
-import 'package:video_call/consultation-schedule.dart';
-import 'package:video_call/login.dart';
-import 'package:video_call/menu.dart';
-import 'package:video_call/post-list.dart';
+import 'package:LawyerOnline/component/appbar.dart';
+import 'package:LawyerOnline/consultation-schedule.dart';
+import 'package:LawyerOnline/login.dart';
+import 'package:LawyerOnline/post-list.dart';
 
 class ProfilePage extends StatefulWidget {
   ProfilePage({Key? key});

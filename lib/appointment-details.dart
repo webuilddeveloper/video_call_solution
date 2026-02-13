@@ -1,6 +1,6 @@
+import 'package:LawyerOnline/component/appbar.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:video_call/component/appbar.dart';
 
 class AppointmentDetails extends StatefulWidget {
   AppointmentDetails({Key? key, this.model});

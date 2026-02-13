@@ -1,9 +1,9 @@
+import 'package:LawyerOnline/component/appbar.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:video_call/component/appbar.dart';
 
 class AppAppointment extends StatefulWidget {
   AppAppointment({Key? key, this.model});

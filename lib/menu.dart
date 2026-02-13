@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:video_call/calendar.dart';
-import 'package:video_call/component/check_avatar.dart';
-import 'package:video_call/home.dart';
-import 'package:video_call/lawyer-online-list.dart';
-import 'package:video_call/message.dart';
-import 'package:video_call/my-appointment.dart';
-import 'package:video_call/profile.dart';
+import 'package:LawyerOnline/calendar.dart';
+import 'package:LawyerOnline/home.dart';
+import 'package:LawyerOnline/lawyer-online-list.dart';
+import 'package:LawyerOnline/message.dart';
+import 'package:LawyerOnline/my-appointment.dart';
+import 'package:LawyerOnline/profile.dart';
 
 class MenuPage extends StatefulWidget {
   MenuPage({Key? key, this.pageIndex, this.modelprofile, this.userType})

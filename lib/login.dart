@@ -1,7 +1,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:video_call/menu.dart';
+import 'package:LawyerOnline/menu.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:video_call/component/appbar.dart';
-import 'package:video_call/lawyer-online-details.dart';
-import 'package:video_call/menu.dart';
+import 'package:LawyerOnline/component/appbar.dart';
+import 'package:LawyerOnline/lawyer-online-details.dart';
 
 class PostDetails extends StatefulWidget {
   PostDetails({Key? key, this.model});

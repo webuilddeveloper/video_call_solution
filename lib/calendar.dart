@@ -1,12 +1,12 @@
 import 'dart:collection';
 
+import 'package:LawyerOnline/appointment-details.dart';
+import 'package:LawyerOnline/component/appbar.dart';
+import 'package:LawyerOnline/shared/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:video_call/appointment-details.dart';
-import 'package:video_call/component/appbar.dart';
-import 'package:video_call/shared/extension.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 class CalendarPage extends StatefulWidget {

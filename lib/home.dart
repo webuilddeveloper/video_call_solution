@@ -1,13 +1,13 @@
+import 'package:LawyerOnline/appointment-details.dart';
+import 'package:LawyerOnline/component/appbar.dart';
+import 'package:LawyerOnline/lawyer-online-details.dart';
+import 'package:LawyerOnline/lawyer-online-list.dart';
+import 'package:LawyerOnline/shared/api_provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:video_call/appointment-details.dart';
-import 'package:video_call/component/appbar.dart';
-import 'package:video_call/lawyer-online-details.dart';
-import 'package:video_call/lawyer-online-list.dart';
-import 'package:video_call/shared/api_provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, this.userType});
