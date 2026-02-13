@@ -45,6 +45,8 @@ class _SplashPageState extends State<SplashPage> {
     const storage = FlutterSecureStorage();
     var user = await storage.read(key: 'userType');
 
+    print('splash >>>> ${user}');
+
     if (!mounted) return;
 
     if (user != null && user.isNotEmpty) {

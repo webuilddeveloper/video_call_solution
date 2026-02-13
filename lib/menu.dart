@@ -15,7 +15,7 @@ class MenuPage extends StatefulWidget {
 
   final int? pageIndex;
   final modelprofile;
-  final String? userType;
+ String? userType;
 
   @override
   State<MenuPage> createState() => _MenuPageState();
@@ -33,7 +33,7 @@ class _MenuPageState extends State<MenuPage> {
 
   @override
   void initState() {
-    userType = widget.userType!;
+    print(widget.userType);
     callRead();
     super.initState();
     // _loadUserProfile();
@@ -42,7 +42,7 @@ class _MenuPageState extends State<MenuPage> {
   callRead() async {
     var user = await storage.read(key: 'userType');
     setState(() {
-      userType = user.toString();
+      userType = widget.userType ?? user.toString();
       pages = <Widget>[
         HomePage(),
         MessagePage(),

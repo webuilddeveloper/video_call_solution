@@ -10,7 +10,9 @@ import 'package:video_call/lawyer-online-list.dart';
 import 'package:video_call/shared/api_provider.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({Key? key, this.userType});
+
+  final String? userType;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -135,7 +137,7 @@ class _HomePageState extends State<HomePage> {
   callRead() async {
     var user = await storage.read(key: 'userType');
     setState(() {
-      userType = user.toString();
+      userType = widget.userType ?? user.toString();
     });
     await postDio('${mainBannerApi}read', {'skip': 0, 'limit': 10}).then(
       (value) async => {
