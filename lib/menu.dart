@@ -1,3 +1,4 @@
+import 'package:LawyerOnline/map-card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -45,6 +46,7 @@ class _MenuPageState extends State<MenuPage> {
         HomePage(),
         MessagePage(),
         LawyerOnlineList(),
+        // MapCardPage(),
         userType == "user" ? MyAppointment() : CalendarPage(),
         ProfilePage(),
       ];

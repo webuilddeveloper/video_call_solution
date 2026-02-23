@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:LawyerOnline/component/appbar.dart';
+import 'package:hms_room_kit/hms_room_kit.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class MessageFormPage extends StatefulWidget {
   MessageFormPage({Key? key, this.model});
@@ -118,6 +120,33 @@ class _MessageFormPageState extends State<MessageFormPage> {
                     : Container(),
               ],
             ),
+            const SizedBox(
+              width: 10,
+            ),
+            GestureDetector(
+              onTap: () => _showReminderBeforeJoin(context),
+              child: Container(
+                width: 40,
+                alignment: Alignment.center,
+                // padding: const EdgeInsets.symmetric(
+                //   horizontal: 12,
+                //   vertical: 10,
+                // ),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFFAFAFA),
+                  // borderRadius: BorderRadius.circular(22),
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    width: 1,
+                    color: const Color(0xFFDBDBDB),
+                  ),
+                ),
+                child: const Icon(
+                  Icons.video_call_outlined,
+                  size: 20,
+                ),
+              ),
+            )
           ],
         ),
       ),
@@ -275,6 +304,89 @@ class _MessageFormPageState extends State<MessageFormPage> {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  void _showReminderBeforeJoin(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text("คำแนะนำก่อนเข้าห้อง"),
+        content: const Text(
+            "📌 กรุณาระบุชื่อในช่อง Enter Name ว่า 1234 ก่อนกด Join Now"),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text("ยกเลิก"),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              Navigator.of(context).pop(); // ปิด dialog
+
+              Map<Permission, PermissionStatus> statuses = await [
+                Permission.camera,
+                Permission.microphone,
+              ].request();
+
+              // ถ้าโดนปฏิเสธแบบถาวร (iOS จะไม่ถามซ้ำ)
+              if (statuses.values.any((s) => s.isPermanentlyDenied)) {
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: const Text("ต้องเปิดการเข้าถึงใน Settings"),
+                    content: const Text(
+                        "กรุณาไปที่การตั้งค่า แล้วอนุญาตให้แอปเข้าถึงกล้องและไมโครโฟน"),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: const Text("ยกเลิก"),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          openAppSettings(); // เปิดหน้า Settings
+                        },
+                        child: const Text("เปิดการตั้งค่า"),
+                      ),
+                    ],
+                  ),
+                );
+                return;
+              }
+
+              bool allGranted =
+                  statuses.values.every((status) => status.isGranted);
+
+              if (allGranted) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HMSPrebuilt(
+                      roomCode: "jle-wjbx-gyk",
+                    ),
+                  ),
+                );
+              } else {
+                // แจ้งเตือนทั่วไป
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: const Text("การอนุญาตถูกปฏิเสธ"),
+                    content: const Text(
+                        "กรุณาอนุญาตให้เข้าถึงกล้องและไมโครโฟนเพื่อใช้งานวิดีโอคอล"),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: const Text("ตกลง"),
+                      ),
+                    ],
+                  ),
+                );
+              }
+            },
+            child: const Text("ต่อไป"),
+          ),
+        ],
       ),
     );
   }

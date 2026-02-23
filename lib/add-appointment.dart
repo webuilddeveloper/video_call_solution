@@ -6,9 +6,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 class AppAppointment extends StatefulWidget {
-  AppAppointment({Key? key, this.model});
+  AppAppointment({Key? key, this.model, this.title});
 
   dynamic model;
+
+  String? title;
 
   @override
   State<AppAppointment> createState() => _AppAppointmentState();
@@ -90,7 +92,7 @@ class _AppAppointmentState extends State<AppAppointment> {
     return Scaffold(
       backgroundColor: const Color(0xFFEEF2F5),
       appBar: appBar(
-        title: "ตารางวันปรึกษา",
+        title: widget.title ?? "ตารางวันปรึกษา",
         backBtn: true,
         rightBtn: false,
         backAction: () => goBack(),

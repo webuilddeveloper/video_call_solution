@@ -141,7 +141,7 @@ class _LawyerOnlineDetailsState extends State<LawyerOnlineDetails> {
         title: "หมอความออนไลน์",
         backBtn: true,
         rightBtn: true,
-        backAction: () => goBack(),
+        backAction: () => goBack(false),
         rightAction: () => {},
       ),
       body: ListView(
@@ -172,7 +172,9 @@ class _LawyerOnlineDetailsState extends State<LawyerOnlineDetails> {
                 ),
                 title: 'สำเร็จ',
                 desc: 'บันทึกข้อมูลเรียบร้อยแล้ว',
-                btnOkOnPress: () {},
+                btnOkOnPress: () {
+                  goBack(true);
+                },
               ).show()
             },
             child: Container(
@@ -630,7 +632,7 @@ class _LawyerOnlineDetailsState extends State<LawyerOnlineDetails> {
     );
   }
 
-  void goBack() async {
-    Navigator.pop(context, false);
+  void goBack(value) async {
+    Navigator.pop(context, value);
   }
 }
