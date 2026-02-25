@@ -1,4 +1,4 @@
-package com.example.video_call
+package td.webuild.lawyer
 
 import io.flutter.embedding.android.FlutterActivity
 

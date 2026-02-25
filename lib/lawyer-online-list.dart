@@ -544,7 +544,7 @@ class _LawyerOnlineListState extends State<LawyerOnlineList>
           children: [
             TileLayer(
               urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-              userAgentPackageName: 'com.example.video_call',
+              userAgentPackageName: 'td.webuild.lawyer',
             ),
             MarkerLayer(
               markers: locations.map((location) {

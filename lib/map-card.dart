@@ -121,7 +121,7 @@ class _WowMapAnimationPageState
                 urlTemplate:
                 "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                 userAgentPackageName:
-                'com.example.video_call',
+                'td.webuild.lawyer',
               ),
 
               MarkerLayer(
