@@ -1,0 +1,2 @@
+/Users/panuwitchaiton/webuild/election/video_call_solution/android/app/.cxx/Debug/2o1c396p/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/panuwitchaiton/webuild/election/video_call_solution/android/app/.cxx/Debug/2o1c396p/armeabi-v7a/CMakeFiles/rebuild_cache.dir

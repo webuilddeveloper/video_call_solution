@@ -58,5 +58,8 @@
 
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>แอปใช้เพื่ออัปโหลดเอกสารหรือรูปภาพประกอบคดี</string>
+
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>แอพต้องการเข้าถึงตำแหน่งของคุณเพื่อให้สามารถค้นหาทนายใกล้คุณได้</string>
 </dict>
 </plist>

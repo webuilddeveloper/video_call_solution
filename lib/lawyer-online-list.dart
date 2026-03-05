@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:LawyerOnline/add-appointment.dart';
 import 'package:LawyerOnline/map-card.dart';
 import 'package:LawyerOnline/post-details.dart';
+import 'package:LawyerOnline/post-form.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:LawyerOnline/component/appbar.dart';
@@ -468,7 +469,7 @@ class _LawyerOnlineListState extends State<LawyerOnlineList>
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => WowMapAnimationPage(),
+                      builder: (context) => PickImagePage(),
                     ),
                   ),
                 },

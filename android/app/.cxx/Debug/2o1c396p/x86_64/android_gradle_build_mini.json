@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "/Users/panuwitchaiton/flutter/flutter/packages/flutter_tools/gradle/src/main/groovy/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/panuwitchaiton/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/Users/panuwitchaiton/webuild/election/video_call_solution/android/app/.cxx/Debug/2o1c396p/x86_64",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/panuwitchaiton/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/Users/panuwitchaiton/webuild/election/video_call_solution/android/app/.cxx/Debug/2o1c396p/x86_64",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}

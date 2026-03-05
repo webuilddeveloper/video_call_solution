@@ -2,6 +2,7 @@ import 'package:LawyerOnline/appointment-details.dart';
 import 'package:LawyerOnline/component/appbar.dart';
 import 'package:LawyerOnline/lawyer-online-details.dart';
 import 'package:LawyerOnline/lawyer-online-list.dart';
+import 'package:LawyerOnline/post-form.dart';
 import 'package:LawyerOnline/shared/api_provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -164,33 +165,35 @@ class _HomePageState extends State<HomePage> {
           imageUrl: 'assets/images/avatar.png',
           rightWidget: Row(
             children: [
+              // GestureDetector(
+              //   onTap: () => openChatBottomSheet(context),
+              //   child: Container(
+              //     // width: 50,
+              //     // height: 50,
+              //     padding: const EdgeInsets.all(14),
+              //     decoration: BoxDecoration(
+              //       color: const Color(0xFFFAFAFA),
+              //       borderRadius: BorderRadius.circular(18),
+              //       border: Border.all(
+              //         width: 1,
+              //         color: const Color(0xFFDBDBDB),
+              //       ),
+              //     ),
+              //     child: Image.asset(
+              //       "assets/icons/edit-square.png",
+              //       color: Colors.black,
+              //       width: 20,
+              //       height: 20,
+              //     ),
+              //   ),
+              // ),
+              // const SizedBox(
+              //   width: 10,
+              // ),
               GestureDetector(
-                onTap: () => openChatBottomSheet(context),
-                child: Container(
-                  // width: 50,
-                  // height: 50,
-                  padding: const EdgeInsets.all(14),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFFAFAFA),
-                    borderRadius: BorderRadius.circular(18),
-                    border: Border.all(
-                      width: 1,
-                      color: const Color(0xFFDBDBDB),
-                    ),
-                  ),
-                  child: Image.asset(
-                    "assets/icons/edit-square.png",
-                    color: Colors.black,
-                    width: 20,
-                    height: 20,
-                  ),
-                ),
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              GestureDetector(
-                onTap: () => {},
+                onTap: () => {
+                 
+                },
                 child: Container(
                   // width: 50,
                   // height: 50,
@@ -216,89 +219,252 @@ class _HomePageState extends State<HomePage> {
         body: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 20),
           children: [
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 15),
+            //   child: Row(
+            //     children: [
+            //       Expanded(
+            //         child: TextField(
+            //           controller: TextEditingController(),
+            //           style: const TextStyle(
+            //             color: Colors.black,
+            //             fontWeight: FontWeight.normal,
+            //             fontFamily: 'Kanit',
+            //             fontSize: 14.00,
+            //           ),
+            //           decoration: InputDecoration(
+            //             filled: true,
+            //             fillColor: const Color(0xFFFFFFFF),
+            //             contentPadding:
+            //                 const EdgeInsets.fromLTRB(14.0, 5.0, 14.0, 5.0),
+            //             hintText: "Search legal topics...",
+            //             helperStyle: TextStyle(
+            //                 color: const Color(0xFF151A2D).withOpacity(0.7)),
+            //             prefixIcon: Padding(
+            //               padding: const EdgeInsets.fromLTRB(8, 13, 0, 13),
+            //               child: Image.asset(
+            //                 'assets/icons/search.png',
+            //                 width: 15,
+            //                 height: 15,
+            //                 fit: BoxFit.contain,
+            //               ),
+            //             ),
+            //             border: OutlineInputBorder(
+            //               borderRadius: BorderRadius.circular(18.0),
+            //               // borderSide: BorderSide.none,
+            //             ),
+            //             enabledBorder: OutlineInputBorder(
+            //               borderRadius: BorderRadius.circular(18.0),
+            //               borderSide:
+            //                   const BorderSide(color: Color(0xFFDBDBDB)),
+            //             ),
+            //             focusedBorder: OutlineInputBorder(
+            //               borderRadius: BorderRadius.circular(18.0),
+            //               borderSide:
+            //                   const BorderSide(color: Color(0xFFDBDBDB)),
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //       const SizedBox(
+            //         width: 15,
+            //       ),
+            //       GestureDetector(
+            //         onTap: () => {},
+            //         child: Container(
+            //             // width: 50,
+            //             // height: 50,
+            //             padding: const EdgeInsets.all(12),
+            //             decoration: BoxDecoration(
+            //               color: const Color(0xFFFAFAFA),
+            //               borderRadius: BorderRadius.circular(18),
+            //               border: Border.all(
+            //                 width: 1,
+            //                 color: const Color(0xFFDBDBDB),
+            //               ),
+            //             ),
+            //             child: Icon(
+            //               Icons.tune,
+            //               color: const Color(0xFF151A2D).withOpacity(0.7),
+            //               size: 22,
+            //             )),
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            // const SizedBox(
+            //   height: 20,
+            // ),
+            // Container(
+            //   padding: const EdgeInsets.symmetric(horizontal: 15),
+            //   height: heightCalculate(150),
+            //   child: _buildBanner(),
+            // ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: TextField(
-                      controller: TextEditingController(),
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.normal,
-                        fontFamily: 'Kanit',
-                        fontSize: 14.00,
-                      ),
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: const Color(0xFFFFFFFF),
-                        contentPadding:
-                            const EdgeInsets.fromLTRB(14.0, 5.0, 14.0, 5.0),
-                        hintText: "Search legal topics...",
-                        helperStyle: TextStyle(
-                            color: const Color(0xFF151A2D).withOpacity(0.7)),
-                        prefixIcon: Padding(
-                          padding: const EdgeInsets.fromLTRB(8, 13, 0, 13),
-                          child: Image.asset(
-                            'assets/icons/search.png',
-                            width: 15,
-                            height: 15,
-                            fit: BoxFit.contain,
+              child: SizedBox(
+                height: 120,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () => {
+                          // PostForm
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PostForm(),
+                            ),
                           ),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(18.0),
-                          // borderSide: BorderSide.none,
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(18.0),
-                          borderSide:
-                              const BorderSide(color: Color(0xFFDBDBDB)),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(18.0),
-                          borderSide:
-                              const BorderSide(color: Color(0xFFDBDBDB)),
+                        },
+                        child: Stack(
+                          children: [
+                            Container(
+                              // height: 200,
+                              width: double.infinity,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 17, vertical: 10),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(20),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.15),
+                                    blurRadius: 3,
+                                    offset: const Offset(0, 2),
+                                  ),
+                                ],
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.only(bottom: 40),
+                                    child: const Text(
+                                      'เปิดเคส\nให้ทนาย',
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w600),
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 3,
+                              right: 5,
+                              child: Container(
+                                // width: 50,
+                                // height: 50,
+                                // padding: const EdgeInsets.all(10),
+                                // decoration: BoxDecoration(
+                                //   color: const Color(0xFFFAFAFA),
+                                //   // borderRadius: BorderRadius.circular(18),
+                                //   shape: BoxShape.circle,
+                                //   border: Border.all(
+                                //     width: 1,
+                                //     color: const Color(0xFFDBDBDB),
+                                //   ),
+                                // ),
+                                child: Image.asset(
+                                  "assets/icons/search-lawyer-btn.png",
+                                  width: 100,
+                                  height: 100,
+                                ),
+                                // select-lawyer-btn
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  GestureDetector(
-                    onTap: () => {},
-                    child: Container(
-                        // width: 50,
-                        // height: 50,
-                        padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFFAFAFA),
-                          borderRadius: BorderRadius.circular(18),
-                          border: Border.all(
-                            width: 1,
-                            color: const Color(0xFFDBDBDB),
-                          ),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () => {
+                          // PostForm
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) => PostForm(),
+                          //   ),
+                          // ),
+                        },
+                        child: Stack(
+                          children: [
+                            Container(
+                              // height: 200,
+                              width: double.infinity,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 17, vertical: 10),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(20),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.15),
+                                    blurRadius: 3,
+                                    offset: const Offset(0, 2),
+                                  ),
+                                ],
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.only(bottom: 40),
+                                    child: const Text(
+                                      'นัดหมายทนาย\nด้วยตัวเอง',
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w600),
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 3,
+                              right: 0,
+                              child: Container(
+                                // width: 50,
+                                // height: 50,
+                                // padding: const EdgeInsets.all(10),
+                                // decoration: BoxDecoration(
+                                //   color: const Color(0xFFFAFAFA),
+                                //   // borderRadius: BorderRadius.circular(18),
+                                //   shape: BoxShape.circle,
+                                //   border: Border.all(
+                                //     width: 1,
+                                //     color: const Color(0xFFDBDBDB),
+                                //   ),
+                                // ),
+                                child: Image.asset(
+                                  "assets/icons/select-lawyer-btn.png",
+                                  width: 100,
+                                  height: 100,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                        child: Icon(
-                          Icons.tune,
-                          color: const Color(0xFF151A2D).withOpacity(0.7),
-                          size: 22,
-                        )),
-                  ),
-                ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
+
             const SizedBox(
-              height: 20,
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              height: heightCalculate(150),
-              child: _buildBanner(),
-            ),
-            const SizedBox(
-              height: 5,
+              height: 15,
             ),
             title(
                 title: "ประเภทกฏหมาย",
@@ -312,22 +478,24 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 15,
             ),
-            userType == 'lawyer' ? Column(
-              children: [
-                title(
-                    title: "นัดหมายที่กำลังจะมาถึง",
-                    isRightBtn: true,
-                    titleRightBtn: "ดูทั้งหมด",
-                    viewAll: () => {}),
-                const SizedBox(
-                  height: 15,
-                ),
-                _buildAppointmentList(),
-                const SizedBox(
-                  height: 15,
-                ),
-              ],
-            ) : Container(),
+            userType == 'lawyer'
+                ? Column(
+                    children: [
+                      title(
+                          title: "นัดหมายที่กำลังจะมาถึง",
+                          isRightBtn: true,
+                          titleRightBtn: "ดูทั้งหมด",
+                          viewAll: () => {}),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      _buildAppointmentList(),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                    ],
+                  )
+                : Container(),
             title(
               title: "หมอความออนไลน์",
               isRightBtn: true,

@@ -6,6 +6,7 @@ plugins {
 }
 
 android {
+    compileSdkVersion 34
     namespace = "td.webuild.lawyer"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
