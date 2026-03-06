@@ -106,11 +106,11 @@ class _MenuPageState extends State<MenuPage> {
               //       _bottomItem("assets/icons/consult.png", 2, title: 'ปรึกษา'),
               // ),
               Expanded(
-                child: _bottomItem("assets/icons/appointment.png", 3,
+                child: _bottomItem("assets/icons/appointment.png", 2,
                     title: 'นัดหมาย'),
               ),
               Expanded(
-                child: _bottomItem("assets/icons/profile.png", 4,
+                child: _bottomItem("assets/icons/profile.png", 3,
                     title: 'โปรไฟล์'),
               )
 
