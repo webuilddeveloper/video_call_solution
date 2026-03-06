@@ -388,12 +388,12 @@ class _HomePageState extends State<HomePage> {
                       child: GestureDetector(
                         onTap: () => {
                           // PostForm
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) => PostForm(),
-                          //   ),
-                          // ),
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => LawyerOnlineList(),
+                            ),
+                          ),
                         },
                         child: Stack(
                           children: [

@@ -143,13 +143,15 @@ class _PostFormState extends State<PostForm> with TickerProviderStateMixin {
     "code": "0",
     "name": "ศักดิ์สิทธิ์ พิพากษ์",
     "scroll": 4.8,
-    "cost": "ไม่เสียค่าใช้จ่าย",
+    "cost": "Free",
     "costUnit": "/hr",
     "imageUrl": "assets/images/lawyer-avatar-1.png",
     "experience": "11+ years",
+    "clientReviews": "60+",
+    "casesWon": "148+",
     "skills": [
-      "Family lawyer",
-      "Estate planning lawyer",
+      "Criminal lawyer",
+      "Corporate lawyer",
     ]
   };
 
@@ -933,29 +935,29 @@ class _PostFormState extends State<PostForm> with TickerProviderStateMixin {
                 height: 15,
               ),
               textDetails(
-                  title: 'ประเภทคดี', value: modelPost['caseTypeTitle'] ?? ''),
+                  title: 'ประเภทคดี', value: modelPost['caseTypeTitle'] ?? '-'),
               const SizedBox(
                 height: 10,
               ),
               textDetails(
                   title: 'ประเภทคดีย่อย',
-                  value: modelPost['subCaseTypeTitle'] ?? ''),
+                  value: modelPost['subCaseTypeTitle'] ?? '-'),
               const SizedBox(
                 height: 10,
               ),
               textDetails(
                   title: 'จังหวัด',
-                  value: modelPost['provinceCaseTitle'] ?? ''),
+                  value: modelPost['provinceCaseTitle'] ?? '-'),
               const SizedBox(
                 height: 10,
               ),
               textDetails(
-                  title: 'วันที่นัดหมาย', value: modelPost['dateCase'] ?? ''),
+                  title: 'วันที่นัดหมาย', value: modelPost['dateCase'] ?? '-'),
               const SizedBox(
                 height: 10,
               ),
               textDetails(
-                  title: 'ค่าใช้จ่าย', value: modelPost['dateCase'] ?? ''),
+                  title: 'ค่าใช้จ่าย', value: modelPost['dateCase'] ?? '-'),
             ],
           ),
         ),
@@ -978,7 +980,7 @@ class _PostFormState extends State<PostForm> with TickerProviderStateMixin {
               const SizedBox(
                 height: 10,
               ),
-              textDetails(title: '', value: modelPost['postDetails']),
+              textDetails(title: '', value: modelPost['postDetails'] ?? "-"),
               const SizedBox(
                 height: 10,
               ),
@@ -1004,7 +1006,7 @@ class _PostFormState extends State<PostForm> with TickerProviderStateMixin {
               const SizedBox(
                 height: 10,
               ),
-              textDetails(title: '', value: modelPost['intentDetails']),
+              textDetails(title: '', value: modelPost['intentDetails'] ?? "-"),
               const SizedBox(
                 height: 10,
               ),
@@ -1343,15 +1345,6 @@ class _PostFormState extends State<PostForm> with TickerProviderStateMixin {
                       fontWeight: FontWeight.w700),
                 ),
                 SizedBox(height: 20),
-                Container(
-                    width: 150,
-                    height: 150,
-                    child: Image.asset(
-                      "assets/images/qrcode-mock.jpg",
-                      width: 60,
-                      height: 60,
-                    )),
-                SizedBox(height: 20),
                 GestureDetector(
                   onTap: () => {
                     goBack(),
@@ -1361,24 +1354,42 @@ class _PostFormState extends State<PostForm> with TickerProviderStateMixin {
                     })
                   },
                   child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 15, horizontal: 60),
-                    decoration: BoxDecoration(
-                        color: const Color(0xFF0262EC),
-                        borderRadius: BorderRadius.circular(18),
-                        border: Border.all(
-                            width: 1, color: const Color(0xFFDBDBDB))),
-                    child: const Text(
-                      "ตกลง",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
+                      width: 150,
+                      height: 150,
+                      child: Image.asset(
+                        "assets/images/qrcode-mock.jpg",
+                        width: 60,
+                        height: 60,
+                      )),
                 ),
+                SizedBox(height: 20),
+                // GestureDetector(
+                //   onTap: () => {
+                //     goBack(),
+                //     startSearch(),
+                //     setState(() {
+                //       page++;
+                //     })
+                //   },
+                //   child: Container(
+                //     padding: const EdgeInsets.symmetric(
+                //         vertical: 15, horizontal: 60),
+                //     decoration: BoxDecoration(
+                //         color: const Color(0xFF0262EC),
+                //         borderRadius: BorderRadius.circular(18),
+                //         border: Border.all(
+                //             width: 1, color: const Color(0xFFDBDBDB))),
+                //     child: const Text(
+                //       "ตกลง",
+                //       style: TextStyle(
+                //         fontSize: 16,
+                //         fontWeight: FontWeight.w700,
+                //         color: Colors.white,
+                //       ),
+                //       textAlign: TextAlign.center,
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),
@@ -1803,13 +1814,15 @@ class _PostFormState extends State<PostForm> with TickerProviderStateMixin {
               ),
             ),
             SizedBox(width: 10),
-            Text(
-              value['title'],
-              style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                  overflow: TextOverflow.ellipsis),
-              maxLines: 2,
+            Expanded(
+              child: Text(
+                value['title'],
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                    overflow: TextOverflow.ellipsis),
+                maxLines: 1,
+              ),
             )
           ],
         ),

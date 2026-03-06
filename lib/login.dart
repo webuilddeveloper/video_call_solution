@@ -72,9 +72,10 @@ class _LoginPageState extends State<LoginPage> {
                               topLeft: Radius.circular(20),
                               topRight: Radius.circular(20)),
                         ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        child: ListView(
+                          physics: BouncingScrollPhysics(),
+                          // mainAxisAlignment: MainAxisAlignment.start,
+                          // crossAxisAlignment: CrossAxisAlignment.start,
                           // mainAxisSize: MainAxisSize.min,
                           children: [
                             /// Tabs

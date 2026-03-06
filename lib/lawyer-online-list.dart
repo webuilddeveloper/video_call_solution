@@ -428,7 +428,7 @@ class _LawyerOnlineListState extends State<LawyerOnlineList>
       backgroundColor: const Color(0xFFEEF2F5),
       appBar: appBarCustom(
         title: "หมอความออนไลน์",
-        backBtn: false,
+        backBtn: true,
         isRightWidget: true,
         backAction: () => goBack(),
         rightWidget: selectTab == '0'
@@ -503,24 +503,26 @@ class _LawyerOnlineListState extends State<LawyerOnlineList>
             const SizedBox(
               height: 20,
             ),
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 20),
+            //   child: tabCategory(),
+            // ),
+            
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: tabCategory(),
+              child:  _buildFilter2()
+              // selectTab == '0' ? Container() : _buildFilter2(),
             ),
-            const SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: selectTab == '0' ? Container() : _buildFilter2(),
-            ),
+            
             selectTab == '0'
                 ? Container()
                 : const SizedBox(
                     height: 20,
                   ),
             Expanded(
-                child: selectTab == '0' ? _buildPost() : _buildLawyerOnline()),
+                child: _buildLawyerOnline()
+                // selectTab == '0' ? _buildPost() : _buildLawyerOnline()
+            ),
           ],
         ),
       ),
@@ -699,7 +701,7 @@ class _LawyerOnlineListState extends State<LawyerOnlineList>
 
   _buildLawyerOnline() {
     return ListView.separated(
-      padding: const EdgeInsets.fromLTRB(20, 0, 20, 120),
+      padding: const EdgeInsets.fromLTRB(20, 20, 20, 120),
       itemCount: lawyerOnlineList.length,
       itemBuilder: (context, index) =>
           _lawyerOnlineItem(lawyerOnlineList[index], onTap: () => {}),

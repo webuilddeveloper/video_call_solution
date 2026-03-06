@@ -6,14 +6,14 @@ import 'package:lottie/lottie.dart';
 class LawyerOnlineDetails extends StatefulWidget {
   LawyerOnlineDetails({Key? key, this.code});
 
-  String? code;
+  final String? code;
 
   @override
   State<LawyerOnlineDetails> createState() => _LawyerOnlineDetailsState();
 }
 
 class _LawyerOnlineDetailsState extends State<LawyerOnlineDetails> {
-  List<dynamic> lawyerOnlineList = [
+  List<Map<String, dynamic>> lawyerOnlineList = [
     {
       "code": "0",
       "name": "ศักดิ์สิทธิ์ พิพากษ์",
@@ -118,23 +118,39 @@ class _LawyerOnlineDetailsState extends State<LawyerOnlineDetails> {
     },
   ];
 
-  dynamic model;
+  Map<String, dynamic> model = {
+    
+  };
+
+  String code = "";
 
   @override
   void initState() {
     // canPop = false;
-    callRead();
     super.initState();
+    callRead();
   }
 
-  callRead() {
-    setState(() {
-      model = lawyerOnlineList.firstWhere((x) => x['code'] == widget.code);
-    });
+  void callRead() {
+    code = widget.code ?? "0";
+
+    var result = lawyerOnlineList.where((x) => x['code'] == code);
+
+    if (result.isNotEmpty) {
+      model = result.first;
+    } else {
+      model = lawyerOnlineList.first;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    // if (model.isEmpty) {
+    //   return const Center(
+    //     child: CircularProgressIndicator(),
+    //   );
+    // }
+
     return Scaffold(
       backgroundColor: const Color(0xFFEEF2F5),
       appBar: appBar(
@@ -158,41 +174,33 @@ class _LawyerOnlineDetailsState extends State<LawyerOnlineDetails> {
           const SizedBox(
             height: 20,
           ),
-          GestureDetector(
-            onTap: () => {
-              // successDialog()
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFF0262EC),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(18),
+              ),
+              padding: const EdgeInsets.symmetric(vertical: 16),
+            ),
+            onPressed: () {
               AwesomeDialog(
                 context: context,
                 dialogType: DialogType.success,
                 animType: AnimType.scale,
-                customHeader: const Icon(
-                  Icons.check_circle,
-                  color: Colors.green,
-                  size: 110,
-                ),
                 title: 'สำเร็จ',
                 desc: 'บันทึกข้อมูลเรียบร้อยแล้ว',
-                btnOkOnPress: () {
-                  goBack(true);
-                },
-              ).show()
+                btnOkOnPress: () => goBack(true),
+              ).show();
             },
-            child: Container(
-              padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-              decoration: BoxDecoration(
-                  color: const Color(0xFF0262EC),
-                  borderRadius: BorderRadius.circular(18)),
-              child: const Text(
-                "จองนัดหมาย",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.white,
-                ),
-                textAlign: TextAlign.center,
+            child: const Text(
+              "จองนัดหมาย",
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w700,
+                color: Colors.white,
               ),
             ),
-          ),
+          )
         ],
       ),
     );
@@ -257,7 +265,7 @@ class _LawyerOnlineDetailsState extends State<LawyerOnlineDetails> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              model['name'],
+                              model['name'] ?? '',
                               style: const TextStyle(
                                 fontSize: 24,
                                 fontWeight: FontWeight.w600,
@@ -273,15 +281,15 @@ class _LawyerOnlineDetailsState extends State<LawyerOnlineDetails> {
                             ),
                             const SizedBox(height: 10),
                             Text(
-                              '${model['cost']}',
+                              model['cost'] ?? '',
                               style: const TextStyle(
                                   fontSize: 24,
                                   fontWeight: FontWeight.w600,
                                   height: 1),
                             ),
-                            model['cost'] != "Free"
+                            (model['cost'] ?? '') != "Free"
                                 ? Text(
-                                    '${model['costUnit']}',
+                                    '${model['costUnit'] ?? ""}',
                                     style: TextStyle(
                                       fontSize: 14,
                                       color: Colors.black.withOpacity(0.5),
@@ -346,7 +354,7 @@ class _LawyerOnlineDetailsState extends State<LawyerOnlineDetails> {
                     spacing: 10,
                     runSpacing: 10,
                     children: [
-                      for (var item in model['skills'])
+                      for (var item in (model['skills'] ?? []))
                         Container(
                           padding:
                               EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -392,22 +400,27 @@ class _LawyerOnlineDetailsState extends State<LawyerOnlineDetails> {
                   const Divider(
                     height: 40,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      scoreItem(
-                          title: "Cases Won",
-                          value: model['casesWon'],
-                          icon: "assets/icons/cases-won.png"),
-                      scoreItem(
-                          title: "Experience",
-                          value: model['experience'],
-                          icon: "assets/icons/experience.png"),
-                      scoreItem(
-                          title: "Client Reviews",
-                          value: model['clientReviews'],
-                          icon: "assets/icons/client-reviews.png"),
-                    ],
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        scoreItem(
+                            title: "Cases Won",
+                            value: model['casesWon'] ?? '',
+                            icon: "assets/icons/cases-won.png"),
+                        const SizedBox(width: 15),
+                        scoreItem(
+                            title: "Experience",
+                            value: model['experience'] ?? '',
+                            icon: "assets/icons/experience.png"),
+                        const SizedBox(width: 15),
+                        scoreItem(
+                            title: "Client Reviews",
+                            value: model['clientReviews'] ?? '',
+                            icon: "assets/icons/client-reviews.png"),
+                      ],
+                    ),
                   ),
                   const SizedBox(height: 20),
                   const Text(
@@ -418,18 +431,21 @@ class _LawyerOnlineDetailsState extends State<LawyerOnlineDetails> {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  Row(
-                    children: [
-                      socialItem(
-                          icon: "assets/icons/facebook.png", action: () {}),
-                      const SizedBox(width: 15),
-                      socialItem(icon: "assets/icons/ig.png", action: () {}),
-                      const SizedBox(width: 15),
-                      socialItem(icon: "assets/icons/x.png", action: () {}),
-                      const SizedBox(width: 15),
-                      socialItem(
-                          icon: "assets/icons/linkin.png", action: () {}),
-                    ],
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        socialItem(
+                            icon: "assets/icons/facebook.png", action: () {}),
+                        const SizedBox(width: 15),
+                        socialItem(icon: "assets/icons/ig.png", action: () {}),
+                        const SizedBox(width: 15),
+                        socialItem(icon: "assets/icons/x.png", action: () {}),
+                        const SizedBox(width: 15),
+                        socialItem(
+                            icon: "assets/icons/linkin.png", action: () {}),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -442,7 +458,7 @@ class _LawyerOnlineDetailsState extends State<LawyerOnlineDetails> {
 
   Widget dateItem({dynamic date, Function? action}) {
     return GestureDetector(
-      onTap: () => action!(),
+      onTap: () => action?.call(),
       child: Container(
           width: 53,
           alignment: Alignment.center,
@@ -539,7 +555,7 @@ class _LawyerOnlineDetailsState extends State<LawyerOnlineDetails> {
 
   Widget socialItem({String? icon, Function? action}) {
     return GestureDetector(
-      onTap: () => action!(),
+      onTap: () => action?.call(),
       child: Container(
         width: 42,
         height: 42,
@@ -557,7 +573,7 @@ class _LawyerOnlineDetailsState extends State<LawyerOnlineDetails> {
           ),
         ),
         child: Image.asset(
-          icon!,
+          icon ?? '',
           width: 18,
           height: 18,
         ),
@@ -567,7 +583,7 @@ class _LawyerOnlineDetailsState extends State<LawyerOnlineDetails> {
 
   Widget btmCard({String? icon, Function? action}) {
     return GestureDetector(
-      onTap: () => action!(),
+      onTap: () => action?.call(),
       child: Container(
         width: 35,
         height: 35,
@@ -585,7 +601,7 @@ class _LawyerOnlineDetailsState extends State<LawyerOnlineDetails> {
           ),
         ),
         child: Image.asset(
-          icon!,
+          icon ?? '',
           width: 16,
           height: 16,
         ),

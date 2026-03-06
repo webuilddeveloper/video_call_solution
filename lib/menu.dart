@@ -45,7 +45,7 @@ class _MenuPageState extends State<MenuPage> {
       pages = <Widget>[
         HomePage(),
         MessagePage(),
-        LawyerOnlineList(),
+        // LawyerOnlineList(),
         // MapCardPage(),
         userType == "user" ? MyAppointment() : CalendarPage(),
         ProfilePage(),
@@ -101,10 +101,10 @@ class _MenuPageState extends State<MenuPage> {
                 child: _bottomItem("assets/icons/message.png", 1,
                     title: 'ข้อความ'),
               ),
-              Expanded(
-                child:
-                    _bottomItem("assets/icons/consult.png", 2, title: 'ปรึกษา'),
-              ),
+              // Expanded(
+              //   child:
+              //       _bottomItem("assets/icons/consult.png", 2, title: 'ปรึกษา'),
+              // ),
               Expanded(
                 child: _bottomItem("assets/icons/appointment.png", 3,
                     title: 'นัดหมาย'),
